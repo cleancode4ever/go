@@ -8,10 +8,10 @@ import (
 )
 
 func TestPlainNumberEvaluatesToItself(t *testing.T) {
-	var value float64 = 5
+	const value float64 = 5
+	const op = types.Operand(value)
 	actual := fmt.Sprintf("%.2f", value)
 
-	op := types.Operand(value)
 	evaluatedCalculation := fmt.Sprintf("%.2f", op.Evaluate())
 
 	if evaluatedCalculation != actual {
@@ -20,10 +20,9 @@ func TestPlainNumberEvaluatesToItself(t *testing.T) {
 }
 
 func TestPlainNumberPrefixInfixPostfix(t *testing.T) {
-	var value float64 = 5
+	const value float64 = 5
+	const op = types.Operand(value)
 	actual := fmt.Sprintf("%.2f", value)
-
-	op := types.Operand(value)
 
 	if calcPrefix := op.Prefix(); calcPrefix != actual {
 		t.Errorf("Wrong prefix notation: %s; expected %s", calcPrefix, actual)
@@ -39,8 +38,8 @@ func TestPlainNumberPrefixInfixPostfix(t *testing.T) {
 }
 
 func TestAddingLiterals(t *testing.T) {
-	left := types.Operand(5)
-	right := types.Operand(15)
+	const left = types.Operand(5)
+	const right = types.Operand(15)
 
 	var actual = left.Evaluate() + right.Evaluate()
 
@@ -52,9 +51,9 @@ func TestAddingLiterals(t *testing.T) {
 }
 
 func TestAddingLiteralsPrefixInfixPostfix(t *testing.T) {
-	var op byte = '+'
-	var leftValue float64 = 5
-	var rightValue float64 = 15
+	const op byte = '+'
+	const leftValue float64 = 5
+	const rightValue float64 = 15
 
 	left := types.Operand(leftValue)
 	right := types.Operand(rightValue)
@@ -93,9 +92,9 @@ func TestMuliplyingLiterals(t *testing.T) {
 }
 
 func TestMuliplyingLiteralsPrefixInfixPostfix(t *testing.T) {
-	var op byte = '*'
-	var leftValue float64 = 5
-	var rightValue float64 = 15
+	const op byte = '*'
+	const leftValue float64 = 5
+	const rightValue float64 = 15
 
 	left := types.Operand(leftValue)
 	right := types.Operand(rightValue)
@@ -186,9 +185,9 @@ func TestComplexAdditionAndMultiplicationPrefixInfixPostfix(t *testing.T) {
 /*================== Helpers ======================*/
 
 func simpleAddAndMultiply3Numbers() (float64, float64, float64, interfaces.Expression, interfaces.Expression, interfaces.Expression, interfaces.Expression) {
-	var leftValue1 float64 = 5
-	var leftValue2 float64 = 4
-	var rightValue float64 = 15
+	const leftValue1 float64 = 5
+	const leftValue2 float64 = 4
+	const rightValue float64 = 15
 
 	left1 := types.Operand(leftValue1)
 	left2 := types.Operand(leftValue2)
@@ -200,11 +199,11 @@ func simpleAddAndMultiply3Numbers() (float64, float64, float64, interfaces.Expre
 }
 
 func complexAdditionAndMultiplicationOf5Numbers() (float64, float64, float64, float64, float64, interfaces.Expression, interfaces.Expression, interfaces.Expression, interfaces.Expression, interfaces.Expression, interfaces.Expression) {
-	var a float64 = 5
-	var b float64 = 4
-	var c float64 = 15
-	var d float64 = 15
-	var e float64 = 15
+	const a float64 = 5
+	const b float64 = 4
+	const c float64 = 15
+	const d float64 = 15
+	const e float64 = 15
 
 	A := types.Operand(a)
 	B := types.Operand(b)
