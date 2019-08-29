@@ -10,7 +10,7 @@ func TestCanSetEmptyBoardCell(t *testing.T) {
 	var newValue = X
 
 	initialBoard := NewBoard()
-	alteredBoard, err := initialBoard.SetBoardCell(row, col, newValue)
+	alteredBoard, err := initialBoard.SetCell(row, col, newValue)
 
 	if err != nil {
 		t.Error(err)
@@ -26,7 +26,7 @@ func TestCannotSetEmptyBoardCellToAnInvalidValue(t *testing.T) {
 	var newValue CellValue = 0xff //Could be any value other than E (0), O (1), and X (2)
 
 	initialBoard := NewBoard()
-	alteredBoard, err := initialBoard.SetBoardCell(row, col, newValue)
+	alteredBoard, err := initialBoard.SetCell(row, col, newValue)
 
 	if err == nil {
 		t.Error("Setting a cell to an invalid value didn't issue any error")
@@ -48,7 +48,7 @@ func TestCannotOperateOnOutOfRangeRowAndColumn(t *testing.T) {
 	}()
 
 	initialBoard := NewBoard()
-	alteredBoard, _ := initialBoard.SetBoardCell(row, col, newValue)
+	alteredBoard, _ := initialBoard.SetCell(row, col, newValue)
 
 	if alteredBoard != initialBoard {
 		t.Errorf("Board state changed through an invalid operation; expected %v received: %v", initialBoard, alteredBoard)
@@ -62,9 +62,9 @@ func TestCannotSetNonEmptyBoardCell(t *testing.T) {
 
 	initialBoard := NewBoard()
 
-	board1, _ := initialBoard.SetBoardCell(row, col, setValue)
+	board1, _ := initialBoard.SetCell(row, col, setValue)
 
-	board2, err := board1.SetBoardCell(row, col, overwriteValue)
+	board2, err := board1.SetCell(row, col, overwriteValue)
 
 	if err == nil {
 		t.Error(fmt.Sprintf("<(%d, %d) = %d> was overwritten by %d", row, col, setValue, overwriteValue))
@@ -83,8 +83,8 @@ func TestCanCountBoardCellsWithSpecificValues(t *testing.T) {
 
 	board := NewBoard()
 
-	board, _ = board.SetBoardCell(row1, col1, setValue)
-	board, _ = board.SetBoardCell(row2, col2, setValue)
+	board, _ = board.SetCell(row1, col1, setValue)
+	board, _ = board.SetCell(row2, col2, setValue)
 
 	numXs := board.numCellsWithValue(setValue)
 
@@ -101,8 +101,8 @@ func TestSetBoardCell(t *testing.T) {
 
 	board := NewBoard()
 
-	board, _ = board.SetBoardCell(row1, col1, setValue)
-	board, _ = board.SetBoardCell(row2, col2, setValue)
+	board, _ = board.SetCell(row1, col1, setValue)
+	board, _ = board.SetCell(row2, col2, setValue)
 
 	numXs := board.numCellsWithValue(setValue)
 

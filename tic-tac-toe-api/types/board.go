@@ -36,8 +36,8 @@ func NewBoard() Board {
 	}
 }
 
-//SetBoardCell sets a specific cell of the board to X or O only if it's empty
-func (b Board) SetBoardCell(row, col byte, value CellValue) (Board, error) {
+//SetCell sets a specific cell of the board to X or O only if it's empty
+func (b Board) SetCell(row, col byte, value CellValue) (Board, error) {
 	if !isDimensionValid(row) || !isDimensionValid(col) {
 		return b, fmt.Errorf("out-of-bound coordination given (%d, %d)", row, col)
 	}
@@ -55,14 +55,6 @@ func (b Board) SetBoardCell(row, col byte, value CellValue) (Board, error) {
 	return b, nil
 }
 
-func isCellValueValid(value CellValue) bool {
-	return value == E || value == O || value == X
-}
-
-func isDimensionValid(dim byte) bool {
-	return dim >= 0 && dim <= dimension
-}
-
 func (b Board) numCellsWithValue(value CellValue) byte {
 	var count byte = 0
 
@@ -75,4 +67,20 @@ func (b Board) numCellsWithValue(value CellValue) byte {
 	}
 
 	return count
+}
+
+func isCellValueValid(value CellValue) bool {
+	return value == E || value == O || value == X
+}
+
+func isDimensionValid(dim byte) bool {
+	return dim >= 0 && dim <= dimension
+}
+
+func NextValidCellValue(value CellValue) CellValue {
+	if value == X {
+		return O
+	}
+
+	return X
 }
