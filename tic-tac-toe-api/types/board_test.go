@@ -110,3 +110,38 @@ func TestSetBoardCell(t *testing.T) {
 		t.Errorf("Wrong number of cells returned; expected %d received: %d", expectedNumX, numXs)
 	}
 }
+
+func TestNextValidCell(t *testing.T) {
+	oValue := O
+	xValue := X
+	nextValidCellValueAfterX := NextValidCellValue(xValue)
+	nextValidCellValueAfterO := NextValidCellValue(oValue)
+
+	if nextValidCellValueAfterX != oValue {
+		t.Errorf("next turn calculation is wrong. Expected %d received %d", oValue, nextValidCellValueAfterX)
+	}
+
+	if nextValidCellValueAfterO != xValue {
+		t.Errorf("next turn calculation is wrong. Expected %d received %d", xValue, nextValidCellValueAfterO)
+	}
+}
+
+func TestCalculateMagicSquareNumber(t *testing.T) {
+	board := NewBoard()
+	board, _ = board.SetCell(0, 0, X)
+	board, _ = board.SetCell(0, 1, O)
+	board, _ = board.SetCell(1, 1, X)
+	board, _ = board.SetCell(2, 1, O)
+	board, _ = board.SetCell(2, 2, X)
+
+	xMagicSquareNumber := board.CalculateMagicSquareNumberFor(X)
+	oMagicSquareNumber := board.CalculateMagicSquareNumberFor(O)
+
+	if xMagicSquareNumber != 15 {
+		t.Errorf("Diagonal miscalculation for Magic Square Number. Expected %d received %d", 15, xMagicSquareNumber)
+	}
+
+	if oMagicSquareNumber != 10 {
+		t.Errorf("Diagonal miscalculation for Magic Square Number. Expected %d received %d", 15, oMagicSquareNumber)
+	}
+}
