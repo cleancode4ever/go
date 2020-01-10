@@ -1,4 +1,4 @@
-package types
+package board
 
 import (
 	"fmt"

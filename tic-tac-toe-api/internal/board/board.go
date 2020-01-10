@@ -1,4 +1,4 @@
-package types
+package board
 
 import (
 	"fmt"
@@ -6,32 +6,14 @@ import (
 
 const dimension = 3
 
-//CellValue could be any of E (Empty), X, or O
-type CellValue byte
-
-//Enumerate possible values for CellValue
-const (
-	E CellValue = iota
-	O
-	X
-)
-
-const MagicSquareWinnerNumber = 15
-
-var magicSquare = [dimension][dimension]byte{
-	{8, 1, 6},
-	{3, 5, 7},
-	{4, 9, 2},
-}
-
 //Board is a 2 dimensional array of CellValues
 type Board struct {
-	Content [dimension][dimension]CellValue
+	Content [dimension][dimension]
 }
 
 //NewBoard Initializes a board with empty cells
-func NewBoard() Board {
-	var content [dimension][dimension]CellValue
+func New() Board {
+	var content [dimension][dimension]Value
 
 	for i := 0; i < dimension; i++ {
 		for j := 0; j < dimension; j++ {
@@ -77,32 +59,6 @@ func (b Board) numCellsWithValue(value CellValue) byte {
 	return count
 }
 
-func isCellValueValid(value CellValue) bool {
-	return value == E || value == O || value == X
-}
-
 func isDimensionValid(dim byte) bool {
 	return dim >= 0 && dim <= dimension
-}
-
-func NextValidCellValue(value CellValue) CellValue {
-	if value == X {
-		return O
-	}
-
-	return X
-}
-
-func (b Board) CalculateMagicSquareNumberFor(value CellValue) byte {
-	var count byte = 0
-
-	for i := 0; i < dimension; i++ {
-		for j := 0; j < dimension; j++ {
-			if b.Content[i][j] == value {
-				count += magicSquare[i][j]
-			}
-		}
-	}
-
-	return count
 }

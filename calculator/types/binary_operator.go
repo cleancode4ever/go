@@ -2,7 +2,8 @@ package types
 
 import (
 	"fmt"
-	"github.com/looking-4-justice/calculator/interfaces"
+
+	"github.com/cleancode4ever/calculator/interfaces"
 )
 
 type BinaryOperator struct {

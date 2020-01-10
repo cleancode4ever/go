@@ -1,6 +1,6 @@
 package types
 
-import "github.com/looking-4-justice/calculator/interfaces"
+import "github.com/cleancode4ever/calculator/interfaces"
 
 type Multiply struct {
 	BinaryOperator

@@ -2,8 +2,8 @@ package domain_test
 
 import (
 	"fmt"
-	"github.com/looking-4-justice/calculator/interfaces"
-	"github.com/looking-4-justice/calculator/types"
+	"github.com/cleancode4ever/calculator/interfaces"
+	"github.com/cleancode4ever/calculator/types"
 	"testing"
 )
 
